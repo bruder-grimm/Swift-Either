@@ -1,9 +1,4 @@
-[![Tested on GitHub Actions](https://github.com/RougeWare/swift-either/actions/workflows/swift.yml/badge.svg)](https://github.com/RougeWare/swift-either/actions/workflows/swift.yml) [![](https://www.codefactor.io/repository/github/rougeware/swift-either/badge)](https://www.codefactor.io/repository/github/rougeware/swift-either)
-
-[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FRougeWare%2FSwift-Either%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/RougeWare/Swift-Either) [![swift package](https://img.shields.io/badge/swift%20package-brightgreen.svg)](https://swift.org/package-manager) [![Supports macOS, iOS, tvOS, watchOS, Linux, & Windows](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FRougeWare%2FSwift-Either%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/RougeWare/Swift-Either) 
-[![](https://img.shields.io/github/release-date/rougeware/swift-either?label=latest%20release)](https://github.com/RougeWare/Swift-Either/releases/latest)
-
-
+This is a fork of software originally developed by RougeWare (https://github.com/RougeWare/Swift-Either)
 
 # Yet Another `Either` Type! 🥳
 
