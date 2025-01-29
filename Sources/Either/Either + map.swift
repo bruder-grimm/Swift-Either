@@ -21,10 +21,7 @@ public extension Either {
     ///   - rightMap: Maps the curret "right" value to a new value in a new type. Not called if this contains a "left" value.
     ///
     /// - Returns: A new `Either` with new possible types and a new value
-    func map<NewLeft, NewRight>(
-        left leftMap: (Left) -> NewLeft,
-        right rightMap: (Right) -> NewRight)
-    -> Either<NewLeft, NewRight> {
+    func map<U, T>(left leftMap: (Left) -> U, right rightMap: (Right) -> T) -> Either<U, T> {
         switch self {
         case .left(let left):
             return .left(leftMap(left))
@@ -39,8 +36,7 @@ public extension Either {
     ///
     /// - Parameter mapper: Passed the current "left" value, and returns a new value, optionally of a new type
     /// - Returns: A new `Either` containing the same "right" value and type, and a new "left" value andor type
-    func map<NewLeft>(left mapper: (Left) -> NewLeft)
-    -> Either<NewLeft, Right> {
+    func map<U>(left mapper: (Left) -> U) -> Either<U, Right> {
         switch self {
         case .left(let left):
             return .left(mapper(left))
@@ -55,14 +51,23 @@ public extension Either {
     ///
     /// - Parameter mapper: Passed the current "right" value, and returns a new value, optionally of a new type
     /// - Returns: A new `Either` containing the same "left" value and type, and a new "right" value andor type
-    func map<NewRight>(right mapper: (Right) -> NewRight)
-    -> Either<Left, NewRight> {
+    func map<T>(right mapper: (Right) -> T) -> Either<Left, T> {
         switch self {
         case .left(let left):
             return .left(left)
             
         case .right(let right):
             return .right(mapper(right))
+        }
+    }
+
+    /// We don't have projections, so we provide a foreach with two closures instead
+    func foreach(_ left: (Left) -> Void, _ right: (Right) -> Void) {
+        switch self {
+        case .left(let leftValue):
+            left(leftValue)
+        case .right(let rightValue):
+            right(rightValue)
         }
     }
 }
@@ -80,8 +85,8 @@ public extension Either {
     /// - Parameter mapper: Maps either the left or the right to a new value (and, optionally, a new type)
     ///
     /// - Returns: A new `Either` with its types remapped
-    func _autoMap<NewLeft>(_ mapper: (Left) -> NewLeft)
-    -> Either<NewLeft, Right> {
+    func _autoMap<U>(_ mapper: (Left) -> U)
+    -> Either<U, Right> {
         map(left: mapper)
     }
     
@@ -94,8 +99,8 @@ public extension Either {
     /// - Parameter mapper: Maps either the left or the right to a new value (and, optionally, a new type)
     ///
     /// - Returns: A new `Either` with its types remapped
-    func _autoMap<NewRight>(_ mapper: (Right) -> NewRight)
-    -> Either<Left, NewRight> {
+    func _autoMap<T>(_ mapper: (Right) -> T)
+    -> Either<Left, T> {
         map(right: mapper)
     }
 }
